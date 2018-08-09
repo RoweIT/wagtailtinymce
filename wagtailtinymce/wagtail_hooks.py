@@ -28,7 +28,7 @@ import json
 
 from django.conf import settings
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.templatetags.static import static
 from django.utils import translation
 from django.utils.html import escape
