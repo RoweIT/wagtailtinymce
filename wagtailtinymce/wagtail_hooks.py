@@ -26,8 +26,6 @@
 
 import json
 
-from django.conf import settings
-
 from django.core.urlresolvers import reverse
 from django.templatetags.static import static
 from django.utils import translation
@@ -36,8 +34,14 @@ from django.utils.html import format_html
 from django.utils.html import format_html_join
 from django.utils.safestring import mark_safe
 
-from wagtail.admin.templatetags.wagtailadmin_tags import hook_output
-from wagtail.core import hooks
+from wagtail import __version__
+
+if __version__ >= '2.0':
+    from wagtail.admin.templatetags.wagtailadmin_tags import hook_output
+    from wagtail.core import hooks
+else:
+    from wagtail.wagtailadmin.templatetags.wagtailadmin_tags import hook_output
+    from wagtail.wagtailcore import hooks
 
 
 def to_js_primitive(string):
@@ -68,7 +72,7 @@ def insert_editor_js():
         '    window.tinymce.suffix = "";'
         '}}());'
         '</script>',
-        to_js_primitive(settings.STATIC_URL + 'wagtailtinymce/js/vendor/tinymce'),
+        to_js_primitive(static('wagtailtinymce/js/vendor/tinymce')),
     )
     js_files = [
         'wagtailtinymce/js/vendor/tinymce/tinymce.jquery.js',
