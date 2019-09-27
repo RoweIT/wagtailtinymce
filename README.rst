@@ -34,7 +34,7 @@ Or, to use TinyMCE for certain instances...
     
     WAGTAILADMIN_RICH_TEXT_EDITORS = {
         'default': {
-            'WIDGET': 'wagtail.wagtailadmin.rich_text.HalloRichTextArea'
+            'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
         },
         'tinymce': {
             'WIDGET': 'wagtailtinymce.rich_text.TinyMCERichTextArea'
@@ -117,7 +117,7 @@ A complete ``wagtail_hooks.py`` file example:
     from django.utils import translation
     from django.utils.html import format_html
     from django.utils.safestring import mark_safe
-    from wagtail.wagtailcore import hooks
+    from wagtail.core import hooks
 
     @hooks.register('insert_tinymce_js')
     def my_plugin_js():
